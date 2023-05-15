@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS namees_db;
+CREATE DATABASE namees_db;
