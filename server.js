@@ -2,6 +2,7 @@ const express=require('express');
 const {create}=require('express-handlebars');
 const sequelize=require('./config/connection')
 const hbs=create({});
+const routers=require('./controllers/userRouter')
 
 const path=require('path')
 const PORT=3001||process.env.PORT;
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname,'public')))
 
-
+app.use(routers)
 liveReloadServer.server.once("connection", () => {
     console.log('reloading')
     setTimeout(() => {
@@ -32,6 +33,13 @@ liveReloadServer.server.once("connection", () => {
 app.get('/', (req, res) => {
     res.render('home');
 });
+
+app.get('/signin', (req, res) => {
+  res.render('login');
+});
+app.get('/signup',(req,res)=>{
+  res.render('signup')
+})
 
 sequelize.sync({force:true}).then(()=>{
     app.listen(PORT,()=>{

@@ -26,7 +26,8 @@ User.init({
     },
     isAdmin:{
         type:DataTypes.BOOLEAN
-    }
+    },
+   
 },{
     sequelize,
     freezeTableName:true});
