@@ -1,3 +1,5 @@
+const sequelize=require('../config/connection')
+
 const {Model,DataTypes}=require('sequelize');
 class Comment extends Model{};
 Comment.init({
@@ -10,25 +12,27 @@ Comment.init({
         type:DataTypes.STRING
     },
     createdAt:{
-type:DataTypes.DATE,
-defaultValue:Date.now()
-    },
+type:DataTypes.DATE  
+  },
     user_id:{
         type:DataTypes.INTEGER,
         references:{
-            model:'User',
+            model:'user',
             key:'id'
         }
     },
     post_id:{
         type:DataTypes.INTEGER,
         references:{
-            model:'Post',
+            model:'post',
             key:'id'
         }
     }
 },{
     sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'comment'
 })
 
 module.exports=Comment

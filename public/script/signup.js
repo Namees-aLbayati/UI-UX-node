@@ -13,12 +13,14 @@ const data=await fetch('/api/signup',{
 })
 
 
-const dataJSON=data.json();
-console.log(dataJSON)
+if(data.ok){
 
+  document.location.replace('/')
+}else{
+  alert('failed to signup')
 }
 
-
+}
 
 signupBtn.addEventListener('click',(event)=>{
 
