@@ -51,6 +51,10 @@ return userData
     modelName: 'user'
 });
 
+
+const jane = User.build({ username: "Jane" ,'email':"n@n.com",'password':"n"});
+console.log(jane instanceof User)
    
+ jane.save();
 
     module.exports=User;
