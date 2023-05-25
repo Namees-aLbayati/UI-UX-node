@@ -5,7 +5,6 @@ router.post('/signup',async(req,res)=>{
 try{
 
     const userData= await User.create(req.body)
- userData.save()
  if(userData){
     res.status(200).json(userData)
     console.log('signup ok')
@@ -30,6 +29,18 @@ if(matching){
 
 }
 
+})
+
+router.put("/user/account",async(req,res)=>{
+let userdata=req.body.email;
+const getInfo=await User.findOne({where:{email:userdata}})
+if(getInfo){
+
+
+
+    
+}else{
+req.json({error:'couldnt find user email'})}
 })
 
 

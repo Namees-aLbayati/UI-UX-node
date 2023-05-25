@@ -17,11 +17,12 @@ User.init({
         autoIncrement:true
     },
     username:{
-        type:DataTypes.STRING
+        type:DataTypes.STRING,
+        unique:true
     },
     email:{
         type:DataTypes.STRING,
-      unique:true
+        unique:true
         
     },
     password:{
@@ -36,7 +37,10 @@ User.init({
 },{
     hooks:{
         
+
 async beforeCreate(userData){
+    console.log('pass here no bulk')
+
     userData.password=await bcrypt.hash(userData.password, 10)
 return userData
 }
@@ -52,9 +56,6 @@ return userData
 });
 
 
-const jane = User.build({ username: "Jane" ,'email':"n@n.com",'password':"n"});
-console.log(jane instanceof User)
-   
- jane.save();
+
 
     module.exports=User;

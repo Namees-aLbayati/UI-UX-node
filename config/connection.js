@@ -7,4 +7,6 @@ const sequelize = new Sequelize(process.env.DB_NAME,
     host: 'localhost',
     dialect: 'mysql'
   });
+
   module.exports=sequelize;
+  

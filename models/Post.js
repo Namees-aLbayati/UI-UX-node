@@ -16,7 +16,8 @@ details:{
     type:DataTypes.STRING
 },
 createdAt:{
-    type:DataTypes.DATE
+    type:DataTypes.DATE,
+    defaultValue:DataTypes.NOW()
 }, user_id:{
     type:DataTypes.INTEGER,
     references:{

@@ -2,8 +2,11 @@ const express=require('express');
 const {create}=require('express-handlebars');
 const sequelize=require('./config/connection')
 const hbs=create({});
+const {User}=require('./models/User')
 const routers=require('./controllers/index')
 var session = require('express-session')
+var userFun=require('./seeds/data')
+var postFun=require('./seeds/data')
 
 const path=require('path')
 const PORT=3001||process.env.PORT;
@@ -68,8 +71,11 @@ app.get('/signout',(req,res)=>{
 })
 
 sequelize.sync({force:true}).then(()=>{
-    app.listen(PORT,()=>{
+  
+    app.listen(PORT,async()=>{
         console.log('listening on 3001')
-    })
+       await userFun();
+
+      })
 })
 
